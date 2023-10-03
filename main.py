@@ -1,82 +1,144 @@
+import os
+
 # This file should go to the .vscode folder becouse path and everything is set up from there
 # It was made to work for Contao LTS 4.9 - 5.3 , I will work on it if something changes
 # Its automating borning job of creating files for new elements, it also boosts productiviy.
 
 #Functions :
-    # Element generator (all content elements)
-    # config.php string to register a element
-    # tl_content.php string for pallete
-    # default.xlf language for english
-    # Basic template (block searchable) and SCSS automaticly connected
-    # SCSS basic template
+    # Element generator (all content elements) ✔
+    # config.php string to register a element ✔
+    # tl_content.php string for pallete ✔
+    # default.xlf language for english ✔
+    # Basic template (block searchable) and SCSS automaticly connected ✔
+    # SCSS basic template ✔
 
+#How to use :
 
-# Fixed paths for now, for LTS 4.9 - 5.3
-pathElementController = "../src/Resources/contao/elements/"
-pathElementTemplate = "../src/Resources/contao/templates/elements/"
-pathElementSCSS = "../src/Resources/public/css/elements/"
+    # Below this you got settings and variables, change values of those variables and python 
+    # will automaticly generate files based by values of those variables
 
-# Namespace Title (Test\Basic\ContentElements)
+# Settings, change here :
 
-namespace = "Test\Basic\ContentElements"
+    # Namespace Title (ex : Test\Basic\ContentElements)
 
-# Controller title (ContentSimpleText)
+namespace = "Test\\Basic\\ContentElements"
+
+    # Controller title (ex : ContentSimpleText)
 
 controller = "ContentSimpleText"
 
-# ContentElement Title (ContentText,ContentImage,ContentMedia, etc....)
+    # ContentElement Title (ex : ContentText,ContentImage,ContentMedia, etc....)
 
 contentElement = "ContentText"
 
-# Template and SCSS Title
+    # Template and SCSS Title (ex : simple_text), it will automaticly add ce_ :) 
 
-elementTemplate = "ce_simple_text"
+elementTemplate = "simple_text"
 
+    # SCSS path from public folder namespace (ex : testbasic)
+
+namespaceShort = "testbasic"
+
+### Don't write anything after this line !!! ###
+# Fixed paths for now, for LTS 4.9 - 5.3
+
+pathElementController = "src/Resources/contao/elements/"
+pathElementTemplate = "src/Resources/contao/templates/elements/"
+pathElementSCSS = "src/Resources/public/css/elements/"
 
 # Controller inner code
+innercodeController =  """
+<?php
 
-"
-namespace Diakonie\Basic\ContentElements;
 
-use Contao\ContentText;
+namespace {};
 
-class ContentBanner extends ContentText
-{
+use Contao\\{};
+
+class {} extends {}
+{{
 
     /**
      * Template
      * @var string
      */
-    protected $strTemplate = 'ce_banner';
+    protected $strTemplate = '{}';
 
     	/**
 	 * Generate the content element
 	 */
 	protected function compile()
-	{
-		$this->addImage = true;
+	{{
 
-				
-		$this->headline = str_replace("[u]",'<u>',$this->headline);
-		$this->headline = str_replace("[/u]",'</u>',$this->headline);
-		$this->headline = str_replace("[br]",'</br>',$this->headline);
+	}}
 
-		$this->Template->headline = $this->headline ;
+}}
 
-     
-        parent::compile();
-	}
+ """
 
-}
+innercodeController = innercodeController.format(namespace,contentElement,controller,contentElement,elementTemplate)
 
+# Html5 Inner Code
 
+innercodeHtmlTemplate = """
+<?php
+$GLOBALS['TL_CSS'][] = 'bundles/{}/css/elements/{}.scss|static';
 
-"
+?>
 
+<?php $this->extend('block_searchable'); ?>
 
+<?php $this->block('headline'); ?>
+<?php $this->endblock(); ?>
 
+<?php $this->block('content'); ?>
 
+<div class="wrapper">
 
+</div>
+
+<?php $this->endblock(); ?>
+ """
+innercodeHtmlTemplate = innercodeHtmlTemplate.format(namespaceShort,elementTemplate)
+
+# SCSS Inner Code
+
+innercodeSCSSTemplate = """
+.ce_{} {{
+    border: green solid 5px;
+}}
+ """
+innercodeSCSSTemplate = innercodeSCSSTemplate.format(elementTemplate)
+
+# Creating directory and controller for element
+os.makedirs(pathElementController)
+f = open(pathElementController + controller + ".php", "w")
+f.write(innercodeController)
+f.close()
+# Creating directory and HTML5 Template for element
+os.makedirs(pathElementTemplate)
+f = open(pathElementTemplate + "ce_" + elementTemplate +".html5", "w")
+f.write(innercodeHtmlTemplate)
+f.close()
+# Creating directory and SCSS for element
+os.makedirs(pathElementSCSS)
+f = open(pathElementSCSS + "ce_" + elementTemplate +".scss", "w")
+f.write(innercodeSCSSTemplate)
+f.close()
+
+# Printing manual code needed to be included in conifuration and language files
+print("✔✔✔ Success ✔✔✔")
+print("### Please paste code below into config.php ###")
+configphp = "$GLOBALS['TL_CTE']['']['{}'] = '{}\\{}';".format(elementTemplate,namespace,controller)
+print(configphp)
+print("### Please paste code below into tl_content.php ###")
+tlcontent = "$GLOBALS['TL_DCA']['tl_content']['palettes']['{}'] = '{{type_legend}},type;';".format(elementTemplate)
+print(tlcontent)
+print("### Please paste code below into default.xlf ###")
+languageen = """<trans-unit id="CTE.{}.0">
+    <source></source>
+</trans-unit>""".format(elementTemplate)
+print(languageen)
 
 
 
