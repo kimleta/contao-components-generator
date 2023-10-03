@@ -23,21 +23,23 @@ import os
 
 namespace = "Test\\Basic\\ContentElements"
 
-    # Controller title (ex : ContentSimpleText)
-
-controller = "ContentSimpleText"
-
-    # ContentElement Title (ex : ContentText,ContentImage,ContentMedia, etc....)
-
-contentElement = "ContentText"
-
-    # Template and SCSS Title (ex : simple_text), it will automaticly add ce_ :) 
-
-elementTemplate = "simple_text"
 
     # SCSS path from public folder namespace (ex : testbasic)
 
 namespaceShort = "testbasic"
+
+    # Controller title (ex : ContentSimpleText)
+
+controller = "ContentImageSimple"
+
+    # ContentElement Title (ex : ContentText,ContentImage,ContentMedia, etc....)
+
+contentElement = "ContentImage"
+
+    # Template and SCSS Title (ex : simple_text), it will automaticly add ce_ :) 
+
+elementTemplate = "simple_Image"
+
 
 ### Don't write anything after this line !!! ###
 # Fixed paths for now, for LTS 4.9 - 5.3
@@ -45,6 +47,15 @@ namespaceShort = "testbasic"
 pathElementController = "src/Resources/contao/elements/"
 pathElementTemplate = "src/Resources/contao/templates/elements/"
 pathElementSCSS = "src/Resources/public/css/elements/"
+
+# Check if directory exists, if not create them
+
+if os.path.exists(pathElementController) == False:
+    os.makedirs(pathElementController)
+if os.path.exists(pathElementTemplate) == False:
+    os.makedirs(pathElementTemplate)
+if os.path.exists(pathElementSCSS) == False:
+    os.makedirs(pathElementSCSS)
 
 # Controller inner code
 innercodeController =  """
@@ -110,18 +121,15 @@ innercodeSCSSTemplate = """
  """
 innercodeSCSSTemplate = innercodeSCSSTemplate.format(elementTemplate)
 
-# Creating directory and controller for element
-os.makedirs(pathElementController)
+# Creating controller for element
 f = open(pathElementController + controller + ".php", "w")
 f.write(innercodeController)
 f.close()
-# Creating directory and HTML5 Template for element
-os.makedirs(pathElementTemplate)
+# Creating HTML5 Template for element
 f = open(pathElementTemplate + "ce_" + elementTemplate +".html5", "w")
 f.write(innercodeHtmlTemplate)
 f.close()
-# Creating directory and SCSS for element
-os.makedirs(pathElementSCSS)
+# Creating SCSS for element
 f = open(pathElementSCSS + "ce_" + elementTemplate +".scss", "w")
 f.write(innercodeSCSSTemplate)
 f.close()
