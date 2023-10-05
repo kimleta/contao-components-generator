@@ -58,8 +58,7 @@ if os.path.exists(pathElementSCSS) == False:
     os.makedirs(pathElementSCSS)
 
 # Controller inner code
-innercodeController =  """
-<?php
+innercodeController =  """<?php
 
 
 namespace {};
@@ -73,7 +72,7 @@ class {} extends {}
      * Template
      * @var string
      */
-    protected $strTemplate = '{}';
+    protected $strTemplate = 'ce_{}';
 
     	/**
 	 * Generate the content element
