@@ -21,24 +21,24 @@ import os
 
     # Namespace Title (ex : Test\Basic\ContentElements)
 
-namespace = "Test\\Basic\\ContentElements"
+namespace = "Diakonie\\Basic\\ContentElements"
 
 
     # SCSS path from public folder namespace (ex : testbasic)
 
-namespaceShort = "testbasic"
+namespaceShort = ""
 
     # Controller title (ex : ContentSimpleText)
 
-controller = "ContentImageSimple"
+controller = ""
 
     # ContentElement Title (ex : ContentText,ContentImage,ContentMedia, etc....)
 
-contentElement = "ContentImage"
+contentElement = ""
 
     # Template and SCSS Title (ex : simple_text), it will automaticly add ce_ :) 
 
-elementTemplate = "simple_Image"
+elementTemplate = ""
 
 
 ### Don't write anything after this line !!! ###
@@ -80,7 +80,7 @@ class {} extends {}
 	 */
 	protected function compile()
 	{{
-
+        parent::compile()
 	}}
 
 }}
