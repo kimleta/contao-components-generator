@@ -26,19 +26,19 @@ namespace = "Diakonie\\Basic\\ContentElements"
 
     # SCSS path from public folder namespace (ex : testbasic)
 
-namespaceShort = ""
+namespaceShort = "diakonie"
 
     # Controller title (ex : ContentSimpleText)
 
-controller = ""
+controller = "ContentSimpleText"
 
     # ContentElement Title (ex : ContentText,ContentImage,ContentMedia, etc....)
 
-contentElement = ""
+contentElement = "ContentImage"
 
     # Template and SCSS Title (ex : simple_text), it will automaticly add ce_ :) 
 
-elementTemplate = ""
+elementTemplate = "simple_text"
 
 
 ### Don't write anything after this line !!! ###
