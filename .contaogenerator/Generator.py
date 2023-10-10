@@ -16,6 +16,7 @@ class Generator:
     #   codeControllerSliderStop
     #   codeControllerAccordionStart
     #   codeControllerAccordionStop
+    #   codeControllerGallery
 
     # Template Classes:
     #   codeTemplateText
@@ -26,12 +27,10 @@ class Generator:
     #   codeTemplateSliderStop
     #   codeTemplateAccrodionStart
     #   codeTemplateAccrodionStop
+    #   codeControllerGallery
 
     # SCCS Classes:
     #   codeSCSS
-
-
-
 
     pathElementController = "../src/Resources/contao/elements/"
     pathElementTemplate = "../src/Resources/contao/templates/elements/"
@@ -42,8 +41,8 @@ class Generator:
     # Video content text controller and template ✔
     # Member content cntroller and template ✔
     # Slider content controller and template ✔
-    # Accordion content controller and template 
-    # Content Gallery controller and template
+    # Accordion content controller and template ✔
+    # Content Gallery controller and template ✔
 
     # Append into config.yml sizerules
     # Append into tl_content
@@ -84,7 +83,39 @@ class Generator:
                 */
                 protected function compile()
                 {{
-                    parent::compile()
+                    parent::compile();
+                }}
+
+            }}
+
+            """
+        return innercodeController
+    
+
+    # Controller for text/headline
+    def codeControllerGallery(self):
+        innercodeController =  """<?php
+
+            namespace {};
+
+            use Contao\\ContentGallery ;
+
+            class {} extends ContentGallery 
+            {{
+
+                /**
+                * Template
+                * @var string
+                */
+                protected $strTemplate = 'ce_{}';
+
+                    /**
+                * Generate the content element
+                */
+                protected function compile()
+                {{
+                    $this->size = ['','','_{}'];
+                    parent::compile();
                 }}
 
             }}
@@ -114,7 +145,7 @@ class Generator:
                 */
                 protected function compile()
                 {{
-                    parent::compile()
+                    parent::compile();
                 }}
 
             }}
@@ -144,7 +175,7 @@ class Generator:
                 */
                 protected function compile()
                 {{
-                    parent::compile()
+                    parent::compile();
                 }}
 
             }}
@@ -175,7 +206,7 @@ class Generator:
                 */
                 protected function compile()
                 {{
-                    parent::compile()
+                    parent::compile();
                 }}
 
             }}
@@ -205,7 +236,7 @@ class Generator:
                 */
                 protected function compile()
                 {{
-                    parent::compile()
+                    parent::compile();
                 }}
 
             }}
@@ -271,8 +302,8 @@ class Generator:
                 */
                 protected function compile()
                 {{
-                    $this->size = ['','','_{}']
-                    parent::compile()
+                    $this->size = ['','','_{}'];
+                    parent::compile();
                 }}
 
             }}
@@ -303,7 +334,7 @@ class Generator:
                 */
                 protected function compile()
                 {{
-                    parent::compile()
+                    parent::compile();
                 }}
 
             }}
@@ -335,6 +366,27 @@ class Generator:
             </div>
 
             <?php $this->endblock(); ?>
+            """
+
+            return innercodeHtmlTemplate
+    
+    # HTML5 Template for Gallery
+    def codeTemplateGallery(self):
+            innercodeHtmlTemplate = """
+            <?php
+            $GLOBALS['TL_CSS'][] = 'bundles/{}/css/elements/ce_{}.scss|static';
+
+            ?>
+
+            <?php $this->extend($this->isRandomOrder ? 'block_unsearchable' : 'block_searchable'); ?>
+
+            <?php $this->block('content'); ?>
+
+                <?= $this->images ?>
+                <?= $this->pagination ?>
+
+            <?php $this->endblock(); ?>
+
             """
 
             return innercodeHtmlTemplate
