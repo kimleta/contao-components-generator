@@ -14,6 +14,8 @@ class Generator:
     #   codeControllerMember
     #   codeControllerSliderStart
     #   codeControllerSliderStop
+    #   codeControllerAccordionStart
+    #   codeControllerAccordionStop
 
     # Template Classes:
     #   codeTemplateText
@@ -22,6 +24,8 @@ class Generator:
     #   codeTemplateMember
     #   codeTemplateSliderStart
     #   codeTemplateSliderStop
+    #   codeTemplateAccrodionStart
+    #   codeTemplateAccrodionStop
 
     # SCCS Classes:
     #   codeSCSS
@@ -88,7 +92,7 @@ class Generator:
             """
         return innercodeController
     
-        # Controller for Slider Start
+    # Controller for Slider Start
     def codeControllerSliderStart(self):
         innercodeController =  """<?php
 
@@ -127,6 +131,67 @@ class Generator:
             use Contao\\ContentSliderStop ;
 
             class {} extends ContentSliderStop 
+            {{
+
+                /**
+                * Template
+                * @var string
+                */
+                protected $strTemplate = 'ce_{}';
+
+                    /**
+                * Generate the content element
+                */
+                protected function compile()
+                {{
+                    parent::compile()
+                }}
+
+            }}
+
+            """
+        return innercodeController
+    
+        
+    # Controller for Accordion Start
+    def codeControllerAccordionStart(self):
+        innercodeController =  """<?php
+
+            namespace {};
+
+            use Contao\\ContentAccordionStart ;
+
+            class {} extends ContentAccordionStart 
+            {{
+
+                /**
+                * Template
+                * @var string
+                */
+                protected $strTemplate = 'ce_{}';
+
+                    /**
+                * Generate the content element
+                */
+                protected function compile()
+                {{
+                    parent::compile()
+                }}
+
+            }}
+
+            """
+        return innercodeController
+    
+    # Controller for Accordion Stop
+    def codeControllerAccordionStop(self):
+        innercodeController =  """<?php
+
+            namespace {};
+
+            use Contao\\ContentAccordionStop ;
+
+            class {} extends ContentAccordionStop 
             {{
 
                 /**
@@ -308,7 +373,7 @@ class Generator:
 
             return innercodeHtmlTemplate
     
-     # HTML5 Template for Slider Start
+    # HTML5 Template for Slider Start
     def codeTemplateSliderStart(self):
             innercodeHtmlTemplate = """
             <?php
@@ -323,7 +388,7 @@ class Generator:
 
             return innercodeHtmlTemplate
     
-     # HTML5 Template for Slider Stop
+    # HTML5 Template for Slider Stop
     def codeTemplateSliderStop(self):
             innercodeHtmlTemplate = """
             
@@ -332,6 +397,32 @@ class Generator:
             """
 
             return innercodeHtmlTemplate
+    
+         # HTML5 Template for Accrodion Start
+    def codeTemplateAccrodionStart(self):
+            innercodeHtmlTemplate = """
+            <?php
+            $GLOBALS['TL_CSS'][] = 'bundles/{}/css/elements/ce_{}.scss|static';
+
+            ?>
+
+            
+            <div class="{}">
+
+            """
+
+            return innercodeHtmlTemplate
+    
+    # HTML5 Template for Accrodion Stop
+    def codeTemplateAccrodionStop(self):
+            innercodeHtmlTemplate = """
+            
+            </div>
+
+            """
+
+            return innercodeHtmlTemplate
+    
     
     # HTML5 Template for Media
     def codeTemplateMedia(self):
