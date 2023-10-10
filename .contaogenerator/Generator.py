@@ -12,14 +12,16 @@ class Generator:
     #   codeControllerImage
     #   codeControllerMedia
     #   codeControllerMember
-    #   
+    #   codeControllerSliderStart
+    #   codeControllerSliderStop
 
     # Template Classes:
     #   codeTemplateText
     #   codeTemplateMedia
     #   codeTemplateImage
     #   codeTemplateMember
-    #   
+    #   codeTemplateSliderStart
+    #   codeTemplateSliderStop
 
     # SCCS Classes:
     #   codeSCSS
@@ -35,7 +37,7 @@ class Generator:
     # Regular content text/headline controller and template ✔
     # Video content text controller and template ✔
     # Member content cntroller and template ✔
-    # Slider content controller and template 
+    # Slider content controller and template ✔
     # Accordion content controller and template 
     # Content Gallery controller and template
 
@@ -65,6 +67,66 @@ class Generator:
             use Contao\\ContentText;
 
             class {} extends ContentText
+            {{
+
+                /**
+                * Template
+                * @var string
+                */
+                protected $strTemplate = 'ce_{}';
+
+                    /**
+                * Generate the content element
+                */
+                protected function compile()
+                {{
+                    parent::compile()
+                }}
+
+            }}
+
+            """
+        return innercodeController
+    
+        # Controller for Slider Start
+    def codeControllerSliderStart(self):
+        innercodeController =  """<?php
+
+            namespace {};
+
+            use Contao\\ContentSliderStart ;
+
+            class {} extends ContentSliderStart 
+            {{
+
+                /**
+                * Template
+                * @var string
+                */
+                protected $strTemplate = 'ce_{}';
+
+                    /**
+                * Generate the content element
+                */
+                protected function compile()
+                {{
+                    parent::compile()
+                }}
+
+            }}
+
+            """
+        return innercodeController
+    
+    # Controller for Slider Start
+    def codeControllerSliderStop(self):
+        innercodeController =  """<?php
+
+            namespace {};
+
+            use Contao\\ContentSliderStop ;
+
+            class {} extends ContentSliderStop 
             {{
 
                 /**
@@ -242,6 +304,31 @@ class Generator:
             </div>
 
             <?php $this->endblock(); ?>
+            """
+
+            return innercodeHtmlTemplate
+    
+     # HTML5 Template for Slider Start
+    def codeTemplateSliderStart(self):
+            innercodeHtmlTemplate = """
+            <?php
+            $GLOBALS['TL_CSS'][] = 'bundles/{}/css/elements/ce_{}.scss|static';
+
+            ?>
+
+            
+            <div class="{}">
+
+            """
+
+            return innercodeHtmlTemplate
+    
+     # HTML5 Template for Slider Stop
+    def codeTemplateSliderStop(self):
+            innercodeHtmlTemplate = """
+            
+            </div>
+
             """
 
             return innercodeHtmlTemplate
