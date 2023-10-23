@@ -30,15 +30,15 @@ namespaceShort = "diakonie"
 
     # Controller title (ex : ContentSimpleText)
 
-controller = "ContentSimpleText"
+controller = "ContentHeroSection"
 
     # ContentElement Title (ex : ContentText,ContentImage,ContentMedia, etc....)
 
-contentElement = "ContentImage"
+contentElement = "ContentText"
 
     # Template and SCSS Title (ex : simple_text), it will automaticly add ce_ :) 
 
-elementTemplate = "simple_text"
+elementTemplate = "hero_section"
 
 
 ### Don't write anything after this line !!! ###
@@ -79,7 +79,7 @@ class {} extends {}
 	 */
 	protected function compile()
 	{{
-        parent::compile()
+        parent::compile();
 	}}
 
 }}
@@ -92,7 +92,7 @@ innercodeController = innercodeController.format(namespace,contentElement,contro
 
 innercodeHtmlTemplate = """
 <?php
-$GLOBALS['TL_CSS'][] = 'bundles/{}/css/elements/{}.scss|static';
+$GLOBALS['TL_CSS'][] = 'bundles/{}/css/elements/ce_{}.scss|static';
 
 ?>
 
