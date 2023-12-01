@@ -31,9 +31,13 @@ template = """
             </div>
 
             """
+
+
+
+scssTemplate = """
+        .ce_{} {{
+            border: green solid 5px;
+        }}
+        """
     
-def getData():
-        return {
-            'template':template ,
-            'controller':controller
-        }
+

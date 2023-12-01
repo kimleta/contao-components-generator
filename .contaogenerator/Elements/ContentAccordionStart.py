@@ -36,9 +36,12 @@ template = """
 
             """
     
-def getData():
-        return {
-            'template':template ,
-            'controller':controller
-        }
+scssTemplate = """
+        .ce_{} {{
+            border: green solid 5px;
+        }}
+        """
+
+
+
         

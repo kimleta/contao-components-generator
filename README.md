@@ -1,11 +1,16 @@
 
   # All classes in Elements folder, for easier finding
 
+    # Python settings:
+      # Pip need to be installed before starting
+      # Inquirer neeeds to be installed also : pip install inquirer 
+
     # Generic Classes:
     #   checkPaths
-    #   generateGlobalInfos
+    #   generateGlobalData
+    #   ElementGenerator
 
-    # Element Classes which contain controller classes and templates
+    # Element Classes which contain controllers,templates and styles
     #   ContentAccordionStart
     #   ContentAccordionStop
     #   ContentGallery
@@ -15,31 +20,6 @@
     #   ContentSliderStart
     #   ContentSliderStop
     #   ContentText
-
-    # Controller Classes:
-    #   codeControllerText
-    #   codeControllerImage
-    #   codeControllerMedia
-    #   codeControllerMember
-    #   codeControllerSliderStart
-    #   codeControllerSliderStop
-    #   codeControllerAccordionStart
-    #   codeControllerAccordionStop
-    #   codeControllerGallery
-
-    # Template Classes:
-    #   codeTemplateText
-    #   codeTemplateMedia
-    #   codeTemplateImage
-    #   codeTemplateMember
-    #   codeTemplateSliderStart
-    #   codeTemplateSliderStop
-    #   codeTemplateAccrodionStart
-    #   codeTemplateAccrodionStop
-    #   codeControllerGallery
-
-    # SCCS Classes:
-    #   codeSCSS
     
     # To DO
     # Content image Controller and template ✔

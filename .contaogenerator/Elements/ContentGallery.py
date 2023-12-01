@@ -42,10 +42,13 @@ template = """
             <?php $this->endblock(); ?>
 
             """
+
+
+scssTemplate = """
+        .ce_{} {{
+            border: green solid 5px;
+        }}
+        """
     
-def getData():
-        return {
-            'template':template ,
-            'controller':controller
-        }
+
 
