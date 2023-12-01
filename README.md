@@ -1,11 +1,9 @@
-import os
-from Elements import *
-from Library import *
 
   # All classes in Elements folder, for easier finding
 
     # Generic Classes:
     #   checkPaths
+    #   generateGlobalInfos
 
     # Element Classes which contain controller classes and templates
     #   ContentAccordionStart
@@ -42,6 +40,8 @@ from Library import *
 
     # SCCS Classes:
     #   codeSCSS
+    
+    # To DO
     # Content image Controller and template ✔
     # Regular content text/headline controller and template ✔
     # Video content text controller and template ✔
@@ -55,27 +55,3 @@ from Library import *
     # Append into config.php 
     # Append new field into tl_content selectMember
     # Append new field into tl_member singleSRC
-
-class Generator:
-
-    # Universal SCSS template
-    scssTemplate = """
-        .ce_{} {{
-            border: green solid 5px;
-        }}
-        """
-    
-    def checkPaths():
-        return CheckPaths.checkPaths()
-    
-    def generateGlobalInfos():
-        return GenerateGlobalData.generateGlobalInfos()
-
-Generator.checkPaths()
-Generator.generateGlobalData()
-
-
-
-
-    
-    
