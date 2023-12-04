@@ -1,3 +1,4 @@
 /src
 .contaogenerator/Elements/__pycache__
 .contaogenerator/Library/__pycache__
+.contaogenerator/.oldversion/main.py
