@@ -7,7 +7,7 @@ pathElementSCSS = "./src/Resources/public/css/elements/"
 
 def checkPaths():
         
-        print("Test is everything generated before start : \n \n")
+        print("Path generator: \n ")
         
         if os.path.exists(pathElementController) == False:
             os.makedirs(pathElementController)

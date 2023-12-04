@@ -1,4 +1,5 @@
 import os
+import inquirer
 from Elements import *
 from Library import *
 
@@ -31,16 +32,47 @@ class Generator:
         creator = ElementGenerator.createElements(data)
 
         return creator
+    
+    def menuOptions():
+        questions = [
+        inquirer.List('menuOption',
+                    message= "Welcome to the Contao Generator Script! Please select your action",
+                    choices= ['Generate new element','Generate/Check paths','Delete global data','Help','Exit'],
+                ),
+        ]
+        answers = inquirer.prompt(questions)
+
+        return answers['menuOption']
 
     # Main Function
     def main(self):
+        
+        # Script main menu
+        menuOption = self.menuOptions()
 
-        # Check paths
-        self.checkPaths()
-        # Check global Data
-        self.generateGlobalData()
-        # Create elements
-        self.createElements(self)
+        # Menu: Check Paths
+        if(menuOption == "Generate/Check paths"):
+            return self.checkPaths()
+        # Menu: Check Paths
+        if(menuOption == "Delete global data"):
+            if(self.deleteGlobalData()):
+                return True
+        # Menu: Check Paths
+        if(menuOption == "Generate new element"):
+            # Check paths
+            self.checkPaths()
+            # Check global Data
+            self.generateGlobalData()
+            # Create elements
+            self.createElements(self)
+        # Menu: Exit
+        if(menuOption == "Help"):
+            print("Please look at readme file.")
+            return True
+        # Menu: Exit
+        if(menuOption == "Exit"):
+            print("Exiting script...")
+            return True
 
 
 
