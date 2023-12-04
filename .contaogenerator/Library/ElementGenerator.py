@@ -1,9 +1,5 @@
 import os
 import inquirer
-# Paths for generation of files
-pathElementController = "./src/Resources/contao/elements/"
-pathElementTemplate = "./src/Resources/contao/templates/elements/"
-pathElementSCSS = "./src/Resources/public/css/elements/"
 
 def getListOfElementControllers():
 
@@ -113,7 +109,7 @@ def getTempData():
     return lines
 
 
-def createElements(array):
+def createElements(array,pathElementController,pathElementTemplate,pathElementSCSS):
     # Get temporary data
     tempData = getTempData()
 

@@ -6,9 +6,14 @@ from Library import *
 
 class Generator:
 
+    # Save Paths
+    pathElementController = "./src/Resources/contao/elements/"
+    pathElementTemplate = "./src/Resources/contao/templates/elements/"
+    pathElementSCSS = "./src/Resources/public/css/elements/"
+
     # Check if folder structure is valid, if not generate one
-    def checkPaths():
-        return CheckPaths.checkPaths()
+    def checkPaths(self):
+        return CheckPaths.checkPaths(self.pathElementController,self.pathElementTemplate,self.pathElementSCSS)
     # Generate global data if dosen't exist
     def generateGlobalData():
         return GenerateGlobalData.generateGlobalData()
@@ -29,7 +34,7 @@ class Generator:
         # Get array of data
         data = self.getTemplateData()
         # Give data to the function 
-        creator = ElementGenerator.createElements(data)
+        creator = ElementGenerator.createElements(data,self.pathElementController,self.pathElementTemplate,self.pathElementSCSS)
 
         return creator
     
@@ -52,7 +57,7 @@ class Generator:
 
         # Menu: Check Paths
         if(menuOption == "Generate/Check paths"):
-            return self.checkPaths()
+            return self.checkPaths(self)
         # Menu: Check Paths
         if(menuOption == "Delete global data"):
             if(self.deleteGlobalData()):
