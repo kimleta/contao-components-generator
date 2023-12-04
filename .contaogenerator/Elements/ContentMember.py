@@ -1,65 +1,66 @@
-controller =  """<?php
+controller =  """
+<?php
 
-            namespace {};
+namespace {};
 
-            use Contao\\ContentText;
+use Contao\\ContentText;
 
-            class {} extends ContentText
-            {{
+class {} extends ContentText
+{{
 
-                /**
-                * Template
-                * @var string
-                */
-                protected $strTemplate = 'ce_{}';
+    /**
+    * Template
+    * @var string
+    */
+    protected $strTemplate = 'ce_{}';
 
-                    /**
-                * Generate the content element
-                */
-                protected function compile()
-                {{
-                    $member = $this->selectMember;
+        /**
+    * Generate the content element
+    */
+    protected function compile()
+    {{
+        $member = $this->selectMember;
 
-                    $member = StringUtil::deserialize($member);
+        $member = StringUtil::deserialize($member);
 
-                    $member = MemberModel::findById($member);
+        $member = MemberModel::findById($member);
 
-                    $this->Template->member = $member;
-                }}
+        $this->Template->member = $member;
+    }}
 
-            }}
+}}
 
             """
     
 
 template = """
-            <?php
-            $GLOBALS['TL_CSS'][] = 'bundles/{}/css/elements/ce_{}.scss|static';
+<?php
+$GLOBALS['TL_CSS'][] = 'bundles/{}/css/elements/ce_{}.scss|static';
 
-            ?>
+?>
 
-            <?php $this->extend('block_searchable'); ?>
+<?php $this->extend('block_searchable'); ?>
 
-            <?php $this->block('headline'); ?>
-            <?php $this->endblock(); ?>
+<?php $this->block('headline'); ?>
+<?php $this->endblock(); ?>
 
-            <?php $this->block('content'); ?>
+<?php $this->block('content'); ?>
 
-            <div class="wrapper">
+<div class="wrapper">
 
-            {{{{figure::<?= $this->member->singleSRC ?>}}}}
+{{{{figure::<?= $this->member->singleSRC ?>}}}}
 
-            <p><?= $this->member->firstname ?> <?= $this->member->lastname ?></p>
+<p><?= $this->member->firstname ?> <?= $this->member->lastname ?></p>
 
-            </div>
+</div>
 
-            <?php $this->endblock(); ?>
+<?php $this->endblock(); ?>
             """
     
 scssTemplate = """
-        .ce_{} {{
-            border: green solid 5px;
-        }}
+.ce_{} {{
+    border: green solid 5px;
+}}
         """
 
 

@@ -1,6 +1,9 @@
 import os
 import inquirer
-
+# Paths for generation of files
+pathElementController = "./src/Resources/contao/elements/"
+pathElementTemplate = "./src/Resources/contao/templates/elements/"
+pathElementSCSS = "./src/Resources/public/css/elements/"
 
 def getListOfElementControllers():
 
@@ -14,7 +17,7 @@ def getListOfElementControllers():
         for path in os.listdir(dir_path):
             # check if current path is a file
             if os.path.isfile(os.path.join(dir_path, path)):
-                # Indend into array and remove extension name
+                # Indend into array and remove extension
                 res.append(path.replace(".py",""))
         # Remove unwanted file
         res.remove('__init__')
@@ -67,9 +70,15 @@ def generateStyles(scssFile,elementTemplate):
 # Returns formated data set
 def getTemplateData(object):
     
-    # Get temporary data
+    # Get data and write it in temporary file
     contentElement = input("Please enter a name of new content element (ex : ContentSimpleText): \n")
-    elementTemplate = input("Please enter single name for html template and scss file (ex : simple_text) : \n ")
+    elementTemplate = input("\nPlease enter single name for html template and scss file (ex : simple_text) : \n")
+
+    # Remember temproary content controller name and template name
+    f = open("temp.txt" ,"w")
+    f.write(contentElement + "\n")
+    f.write(elementTemplate)
+    f.close()
 
     # Get element data
     template = object.template
@@ -86,10 +95,51 @@ def getTemplateData(object):
     
     arrayReturn = {
          "controller":controller,
-         "template":controller,
-         "styles":controller,
+         "template":template,
+         "styles":styles,
     }
     
 
-    print(styles)
+    return arrayReturn
 
+# Read each line and return it as array
+def getTempData():
+    # Read each file and remember into array
+    with open("temp.txt") as file:
+        lines = [line.rstrip() for line in file]
+
+    # Delete temporary file
+    os.remove("temp.txt") 
+    return lines
+
+
+def createElements(array):
+    # Get temporary data
+    tempData = getTempData()
+
+    # get controller name and template name
+    controllerName = tempData[0]
+    elementTemplateName = tempData[1].lower()    
+
+    # Template data
+    template = array['template']
+    # Styles data
+    styles = array['styles']
+    # Controller data
+    controller = array['controller']
+
+
+    # Creating controller for element
+    f = open(pathElementController + controllerName + ".php", "w")
+    f.write(controller)
+    f.close()
+    # Creating HTML5 Template for element
+    f = open(pathElementTemplate + "ce_" + elementTemplateName +".html5", "w")
+    f.write(template)
+    f.close()
+    # Creating SCSS for element
+    f = open(pathElementSCSS + "ce_" + elementTemplateName +".scss", "w")
+    f.write(styles)
+    f.close()
+
+    return True

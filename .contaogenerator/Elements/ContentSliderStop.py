@@ -1,38 +1,39 @@
-controller =  """<?php
+controller =  """
+<?php
 
-            namespace {};
+namespace {};
 
-            use Contao\\ContentSliderStop ;
+use Contao\\ContentSliderStop ;
 
-            class {} extends ContentSliderStop 
-            {{
+class {} extends ContentSliderStop 
+{{
 
-                /**
-                * Template
-                * @var string
-                */
-                protected $strTemplate = 'ce_{}';
+    /**
+    * Template
+    * @var string
+    */
+    protected $strTemplate = 'ce_{}';
 
-                    /**
-                * Generate the content element
-                */
-                protected function compile()
-                {{
-                    parent::compile();
-                }}
+        /**
+    * Generate the content element
+    */
+    protected function compile()
+    {{
+        parent::compile();
+    }}
 
-            }}
+}}
 
             """
         
 template = """
-            
-            </div>
+
+</div>
 
             """
 
 scssTemplate = """
-        .ce_{} {{
-            border: green solid 5px;
-        }}
+.ce_{} {{
+    border: green solid 5px;
+}}
         """

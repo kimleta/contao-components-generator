@@ -1,62 +1,63 @@
-controller =  """<?php
+controller =  """
+<?php
 
-            namespace {};
+namespace {};
 
-            use Contao\\ContentText;
+use Contao\\ContentText;
 
-            class {} extends ContentText
-            {{
+class {} extends ContentText
+{{
 
-                /**
-                * Template
-                * @var string
-                */
-                protected $strTemplate = 'ce_{}';
+    /**
+    * Template
+    * @var string
+    */
+    protected $strTemplate = 'ce_{}';
 
-                    /**
-                * Generate the content element
-                */
-                protected function compile()
-                {{
-                    parent::compile();
-                }}
+        /**
+    * Generate the content element
+    */
+    protected function compile()
+    {{
+        parent::compile();
+    }}
 
-            }}
+}}
 
             """
 
 template = """
-            <?php
-            $GLOBALS['TL_CSS'][] = 'bundles/{}/css/elements/ce_{}.scss|static';
+<?php
+$GLOBALS['TL_CSS'][] = 'bundles/{}/css/elements/ce_{}.scss|static';
 
-            ?>
+?>
 
-            <?php $this->extend('block_searchable'); ?>
+<?php $this->extend('block_searchable'); ?>
 
-            <?php $this->block('headline'); ?>
-            <?php $this->endblock(); ?>
+<?php $this->block('headline'); ?>
+<?php $this->endblock(); ?>
 
-            <?php $this->block('content'); ?>
+<?php $this->block('content'); ?>
 
-            <div class="wrapper">
+<div class="wrapper">
 
-                <?php if($this->headline): ?>
-                    <h1><?= $this->headline ?></h1>
-                <?php endif; ?>
+    <?php if($this->headline): ?>
+        <h1><?= $this->headline ?></h1>
+    <?php endif; ?>
 
-                <?php if($this->text): ?>
-                    <p><?= $this->text ?></p>
-                <?php endif; ?>
+    <?php if($this->text): ?>
+        <p><?= $this->text ?></p>
+    <?php endif; ?>
 
-            </div>
+</div>
 
-            <?php $this->endblock(); ?>
+<?php $this->endblock(); ?>
             """
 
 scssTemplate = """
-        .ce_{} {{
-            border: green solid 5px;
-        }}
+.ce_{} {{
+    border: green solid 5px;
+}}
         """
     
 
