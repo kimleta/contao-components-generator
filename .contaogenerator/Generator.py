@@ -10,10 +10,14 @@ class Generator:
     pathElementController = "./src/Resources/contao/elements/"
     pathElementTemplate = "./src/Resources/contao/templates/elements/"
     pathElementSCSS = "./src/Resources/public/css/elements/"
+    pathConfig = "./src/Resources/contao/config/"
+    pathDca = "./src/Resources/contao/dca/"
+    pathLanguagesDE = "./src/Resources/contao/langauges/de/"
+    pathLanguagesEN = "./src/Resources/contao/langauges/en/"
 
     # Check if folder structure is valid, if not generate one
     def checkPaths(self):
-        return CheckPaths.checkPaths(self.pathElementController,self.pathElementTemplate,self.pathElementSCSS)
+        return CheckPaths.checkPaths(self.pathElementController,self.pathElementTemplate,self.pathElementSCSS,self.pathConfig,self.pathDca,self.pathLanguagesDE,self.pathLanguagesEN)
     # Generate global data if dosen't exist
     def generateGlobalData():
         return GenerateGlobalData.generateGlobalData()

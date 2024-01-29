@@ -1,6 +1,6 @@
 import os
 
-def checkPaths(pathElementController,pathElementTemplate,pathElementSCSS):
+def checkPaths(pathElementController,pathElementTemplate,pathElementSCSS,pathConfig,pathDca,pathLanguagesDE,pathLanguagesEN):
         
         print("Path generator: \n ")
         
@@ -22,6 +22,37 @@ def checkPaths(pathElementController,pathElementTemplate,pathElementSCSS):
 
         else:
              print("☑ Element SCSS path are already generated!")
-                 
+
+        
+        if os.path.exists(pathConfig) == False:
+            os.makedirs(pathConfig)
+            print("☑ Config path is generated!")
+
+        else:
+             print("☑ Config path are already generated!")
+
+        
+        if os.path.exists(pathDca) == False:
+            os.makedirs(pathDca)
+            print("☑ DCA path is generated!")
+
+        else:
+             print("☑ DCA path are already generated!")
+
+        if os.path.exists(pathLanguagesDE) == False:
+            os.makedirs(pathLanguagesDE)
+            print("☑ DE Language path is generated!")
+
+        else:
+             print("☑ DE Language are already generated!")
+              
+
+        if os.path.exists(pathLanguagesEN) == False:
+            os.makedirs(pathLanguagesEN)
+            print("☑ EN Language path is generated!")
+
+        else:
+             print("☑ EN Language are already generated!")
+              
 
         return True
