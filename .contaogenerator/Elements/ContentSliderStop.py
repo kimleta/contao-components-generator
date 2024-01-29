@@ -1,5 +1,4 @@
-controller =  """
-<?php
+controller =  """<?php
 
 namespace {};
 

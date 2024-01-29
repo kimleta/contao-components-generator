@@ -65,7 +65,7 @@ class Generator:
         # Menu: Check Paths
         if(menuOption == "Generate new element"):
             # Check paths
-            self.checkPaths()
+            self.checkPaths(self)
             # Check global Data
             self.generateGlobalData()
             # Create elements
