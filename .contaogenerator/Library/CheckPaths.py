@@ -1,6 +1,6 @@
 import os
 
-def checkPaths(pathElementController,pathElementTemplate,pathElementSCSS,pathConfig,pathDca,pathLanguagesDE,pathLanguagesEN):
+def checkPaths(pathElementController,pathElementTemplate,pathElementSCSS,pathConfig,pathDca,pathLanguagesDE,pathLanguagesEN,pathImageRules):
         
         print("Path generator: \n ")
         
@@ -53,6 +53,13 @@ def checkPaths(pathElementController,pathElementTemplate,pathElementSCSS,pathCon
 
         else:
              print("☑ EN Language are already generated!")
+              
+        if os.path.exists(pathImageRules) == False:
+            os.makedirs(pathImageRules)
+            print("☑ Config for image rules path is generated!")
+
+        else:
+             print("☑ Config for image rules path are already generated!")
               
 
         return True

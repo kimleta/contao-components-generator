@@ -1,3 +1,28 @@
+dcaPallete = """$GLOBALS['TL_DCA']['tl_content']['palettes']['{}'] = "{type_legend},type;";"""
+
+configLoader = """$GLOBALS['TL_CTE']['Custom Elements']['{}'] = '{}\{}';"""
+
+configWrapperLoader = """$GLOBALS['TL_WRAPPERS']['start'] = '{}'; """
+
+customFields = [
+
+    """
+    $GLOBALS['TL_DCA']['tl_content']['fields']['urlNotMandatory'] = [
+    'label'                   => &$GLOBALS['TL_LANG']['MSC']['url'],
+    'search'                  => true,
+    'inputType'               => 'text',
+    'eval'                    => array('mandatory'=>false, 'rgxp'=>'url', 'decodeEntities'=>true, 'maxlength'=>2048, 'dcaPicker'=>true, 'tl_class'=>'w50'),
+    'sql'                     => "text NULL"
+    ];
+
+    """,
+]
+
+#imagerules = ""
+
+#languageDE = "" 
+#languageEN = "" 
+
 controller =  """<?php
 
 namespace {};
@@ -41,6 +66,7 @@ scssTemplate = """
     border: green solid 5px;
 }}
         """
+
 
 
 

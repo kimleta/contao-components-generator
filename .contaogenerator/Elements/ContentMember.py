@@ -1,5 +1,17 @@
-controller =  """
-<?php
+dcaPallete = """$GLOBALS['TL_DCA']['tl_content']['palettes']['{}'] = "{type_legend},type;";"""
+
+configLoader = """$GLOBALS['TL_CTE']['Custom Elements']['{}'] = '{}\{}';"""
+
+#configWrapperLoader = """"""
+
+#customFields = []
+
+#imagerules = ""
+
+#languageDE = "" 
+#languageEN = "" 
+
+controller =  """<?php
 
 namespace {};
 

@@ -14,10 +14,11 @@ class Generator:
     pathDca = "./src/Resources/contao/dca/"
     pathLanguagesDE = "./src/Resources/contao/langauges/de/"
     pathLanguagesEN = "./src/Resources/contao/langauges/en/"
+    pathImageRules = "./src/Resources/config/"
 
     # Check if folder structure is valid, if not generate one
     def checkPaths(self):
-        return CheckPaths.checkPaths(self.pathElementController,self.pathElementTemplate,self.pathElementSCSS,self.pathConfig,self.pathDca,self.pathLanguagesDE,self.pathLanguagesEN)
+        return CheckPaths.checkPaths(self.pathElementController,self.pathElementTemplate,self.pathElementSCSS,self.pathConfig,self.pathDca,self.pathLanguagesDE,self.pathLanguagesEN,self.pathImageRules)
     # Generate global data if dosen't exist
     def generateGlobalData():
         return GenerateGlobalData.generateGlobalData()
