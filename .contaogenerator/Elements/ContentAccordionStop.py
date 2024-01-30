@@ -1,6 +1,6 @@
-dcaPallete = """$GLOBALS['TL_DCA']['tl_content']['palettes']['{}'] = "{type_legend},type;";"""
+dcaPallete = """$GLOBALS['TL_DCA']['tl_content']['palettes']['{}'] = "{{type_legend}},type;";"""
 
-configLoader = """$GLOBALS['TL_CTE']['Custom Elements']['{}'] = '{}\{}';"""
+configLoader = """$GLOBALS['TL_CTE']['Custom Elements']['{}'] = '{}\\{}';"""
 
 configWrapperLoader = """$GLOBALS['TL_WRAPPERS']['stop'] = '{}'; """
 

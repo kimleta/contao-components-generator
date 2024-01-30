@@ -15,6 +15,7 @@ class Generator:
     pathLanguagesDE = "./src/Resources/contao/langauges/de/"
     pathLanguagesEN = "./src/Resources/contao/langauges/en/"
     pathImageRules = "./src/Resources/config/"
+    
 
     # Check if folder structure is valid, if not generate one
     def checkPaths(self):
@@ -35,13 +36,25 @@ class Generator:
         return ElementGenerator.getTemplateData(object)
     
     # Create Elements
-    def createElements(self):
-        # Get array of data
-        data = self.getTemplateData()
+    def createElements(self,data):
         # Give data to the function 
         creator = ElementGenerator.createElements(data,self.pathElementController,self.pathElementTemplate,self.pathElementSCSS)
-
         return creator
+    
+    # Create/Append config.php
+    def appendPallete(self,data):
+        # Return data to the function
+        return PalleteGenerator.appendPallete(self.pathDca,data['pallete'])
+    
+    # Create/Append config.php
+    def appendConfig(self,data):
+        # Return data to the function
+        return ConfigGenerator.appendConfig(self.pathConfig,data['config'])
+    
+     # Create/Append config.php | wrapper
+    def appendConfigWrapper(self,data):
+        # Return data to the function
+        return ConfigGenerator.appendWrapperConfig(self.pathConfig,data['wrapper'])
     
     def menuOptions():
         questions = [
@@ -56,33 +69,43 @@ class Generator:
 
     # Main Function
     def main(self):
-        
-        # Script main menu
-        menuOption = self.menuOptions()
+            # Script main menu
+            menuOption = self.menuOptions()
 
-        # Menu: Check Paths
-        if(menuOption == "Generate/Check paths"):
-            return self.checkPaths(self)
-        # Menu: Check Paths
-        if(menuOption == "Delete global data"):
-            if(self.deleteGlobalData()):
+            # Menu: Check Paths
+            if(menuOption == "Generate/Check paths"):
+                return self.checkPaths(self)
+            # Menu: Check Paths
+            elif (menuOption == "Delete global data"):
+                if(self.deleteGlobalData()):
+                    return True
+            # Menu: Check Paths
+            elif (menuOption == "Generate new element"):
+                
+                # Get array of data and save it
+                data = self.getTemplateData()
+                
+                # Check paths
+                self.checkPaths(self)
+                # Check global Data
+                self.generateGlobalData()
+                # Create elements
+                self.createElements(self,data)
+                # Append Config
+                self.appendConfig(self,data)
+                self.appendConfigWrapper(self,data) # Wrapper TL_WRAPPER
+                # Append Pallete
+                self.appendPallete(self,data)
+
+            # Menu: Exit
+            elif (menuOption == "Help"):
+                print("Please look at readme file.")
                 return True
-        # Menu: Check Paths
-        if(menuOption == "Generate new element"):
-            # Check paths
-            self.checkPaths(self)
-            # Check global Data
-            self.generateGlobalData()
-            # Create elements
-            self.createElements(self)
-        # Menu: Exit
-        if(menuOption == "Help"):
-            print("Please look at readme file.")
-            return True
-        # Menu: Exit
-        if(menuOption == "Exit"):
-            print("Exiting script...")
-            return True
+            # Menu: Exit
+            elif (menuOption == "Exit"):
+                print("Exiting script...")
+                return True
+            
 
 
 

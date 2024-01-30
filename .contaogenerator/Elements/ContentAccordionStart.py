@@ -1,12 +1,10 @@
-dcaPallete = """$GLOBALS['TL_DCA']['tl_content']['palettes']['{}'] = "{type_legend},type;";"""
+dcaPallete = """$GLOBALS['TL_DCA']['tl_content']['palettes']['{}'] = "{{type_legend}},type;";"""
 
-configLoader = """$GLOBALS['TL_CTE']['Custom Elements']['{}'] = '{}\{}';"""
+configLoader = """$GLOBALS['TL_CTE']['Custom Elements']['{}'] = '{}\\{}';"""
 
 configWrapperLoader = """$GLOBALS['TL_WRAPPERS']['start'] = '{}'; """
 
-customFields = [
-
-    """
+customFields = """
     $GLOBALS['TL_DCA']['tl_content']['fields']['urlNotMandatory'] = [
     'label'                   => &$GLOBALS['TL_LANG']['MSC']['url'],
     'search'                  => true,
@@ -15,13 +13,36 @@ customFields = [
     'sql'                     => "text NULL"
     ];
 
-    """,
-]
+    """
 
-#imagerules = ""
+imagerules = """{}:
+        width: 650
+        height: 650
+        resize_mode: crop
+        lazy_loading: true
+        formats:
+          jpg:
+            - webp
+            - jpg
+          png:
+            - webp
+            - png
+        items:
+          - media: '(max-width: 650px)'
+            width: 450
+            height: 450"""
 
-#languageDE = "" 
-#languageEN = "" 
+languageDE = """
+<trans-unit id="CTE.{}.0">
+    <source>{}</source>
+</trans-unit>
+""" 
+languageEN = """
+<trans-unit id="CTE.{}.0">
+    <source>{}</source>
+</trans-unit
+
+""" 
 
 controller =  """<?php
 
