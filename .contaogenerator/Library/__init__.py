@@ -1,1 +1,1 @@
-__all__ = ["CheckPaths","GenerateGlobalData","ElementGenerator","PalleteGenerator","ConfigGenerator"]
+__all__ = ["CheckPaths","GenerateGlobalData","ElementGenerator","PalleteGenerator","ConfigGenerator","FieldsGenerator","ImageRulesGenerator"]
