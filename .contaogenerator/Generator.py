@@ -41,7 +41,7 @@ class Generator:
         creator = ElementGenerator.createElements(data,self.pathElementController,self.pathElementTemplate,self.pathElementSCSS)
         return creator
     
-    # Create/Append config.php
+    # Create/Append tl_content
     def appendPallete(self,data):
         # Return data to the function
         return PalleteGenerator.appendPallete(self.pathDca,data['pallete'])
@@ -55,6 +55,16 @@ class Generator:
     def appendConfigWrapper(self,data):
         # Return data to the function
         return ConfigGenerator.appendWrapperConfig(self.pathConfig,data['wrapper'])
+    
+    # Create/Append tl_content | fields
+    def appendFields(self,data):
+        # Return data to the function
+        return FieldsGenerator.appendFields(self.pathDca,data['fields'])
+    
+    # Create/Append config.yaml 
+    def appendImageRules(self,data):
+        # Return data to the function
+        return ImageRulesGenerator.appendImageRules(self.pathImageRules,data['imagerules'])
     
     def menuOptions():
         questions = [
@@ -96,6 +106,10 @@ class Generator:
                 self.appendConfigWrapper(self,data) # Wrapper TL_WRAPPER
                 # Append Pallete
                 self.appendPallete(self,data)
+                # Append fields
+                self.appendFields(self,data)
+                # Append image rules
+                self.appendImageRules(self,data)
 
             # Menu: Exit
             elif (menuOption == "Help"):

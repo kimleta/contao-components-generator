@@ -208,7 +208,7 @@ def getTemplateData(object):
         "config": config,
         "fields" : customFieldsGen,
         "wrapper" : configWrapper,
-        "imagerulse" : imagerulesGen,
+        "imagerules" : imagerulesGen,
         "langDE" : languageDEGen,
         "langEN" : languageENGen,
     }

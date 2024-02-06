@@ -15,23 +15,22 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['urlNotMandatory'] = [
 
     """
 
-imagerules = """
-        {}:
-            width: 650
-            height: 650
-            resize_mode: crop
-            lazy_loading: true
-            formats:
-            jpg:
-                - webp
-                - jpg
-            png:
-                - webp
-                - png
-            items:
-            - media: '(max-width: 650px)'
-                width: 450
-                height: 450
+imagerules = """            {}:
+                width: 650
+                height: 650
+                resize_mode: crop
+                lazy_loading: true
+                formats:
+                    jpg:
+                        - webp
+                        - jpg
+                    png:
+                        - webp
+                        - png
+                items:
+                  - media: '(max-width: 650px)'
+                    width: 450
+                    height: 450
 """
 
 languageDE = """
